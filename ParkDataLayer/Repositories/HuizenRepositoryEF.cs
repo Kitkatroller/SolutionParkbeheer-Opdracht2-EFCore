@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
+using ParkDataLayer.Exceptions;
 using ParkDataLayer.Mappers;
 using ParkDataLayer.Model;
 using System;
@@ -22,48 +23,87 @@ namespace ParkDataLayer.Repositories
 
         public Huis GeefHuis(int id)
         {
-            var huisEF = _context.Huizen
+            try
+            {
+                var huisEF = _context.Huizen
                                  .Include(h => h.Park)
                                  .FirstOrDefault(h => h.Id == id);
-            return HuisMapper.MapToBLModel(huisEF);
+                return HuisMapper.MapToBLModel(huisEF);
+            }
+            catch
+            {
+                throw new RepositoryException("Geef huis");
+            }
+            
         }
 
         public bool HeeftHuis(string straat, int nummer, Park park)
         {
-            return _context.Huizen.Any(h => h.Straat == straat && h.Nr == nummer && h.ParkId == park.Id);
+            try
+            {
+                return _context.Huizen.Any(h => h.Straat == straat && h.Nr == nummer && h.ParkId == park.Id);
+            }
+            catch
+            {
+                throw new RepositoryException("Heeft huis");
+            }            
         }
 
         public bool HeeftHuis(int id)
         {
-            return _context.Huizen.Any(h => h.Id == id);
+            try
+            {
+                return _context.Huizen.Any(h => h.Id == id);
+            }
+            catch
+            {
+                throw new RepositoryException("Heeft huis");
+            }  
+            
         }
 
         public void UpdateHuis(Huis huis)
         {
-            var huisEF = _context.Huizen.Find(huis.Id);
-            if (huisEF != null)
+            try
             {
-                var mappedHuisEF = HuisMapper.MapToEfEntity(huis);
-                mappedHuisEF.Id = huisEF.Id;
+                var huisEF = _context.Huizen.Find(huis.Id);
+                if (huisEF != null)
+                {
+                    var mappedHuisEF = HuisMapper.MapToEfEntity(huis);
+                    mappedHuisEF.Id = huisEF.Id;
 
-                _context.Entry(huisEF).CurrentValues.SetValues(mappedHuisEF);
+                    _context.Entry(huisEF).CurrentValues.SetValues(mappedHuisEF);
 
-                _context.SaveChanges();
+                    _context.SaveChanges();
+                }
             }
+            catch
+            {
+                throw new RepositoryException("Update huis");
+            }
+            
         }
 
         public Huis VoegHuisToe(Huis huis)
         {
-            var huisEF = HuisMapper.MapToEfEntity(huis);
-
-            if (_context.Parks.Find(huisEF.Park.Id) != null)
+            try
             {
-                huisEF.Park = _context.Parks.Find(huisEF.Park.Id);
-            }
+                var huisEF = HuisMapper.MapToEfEntity(huis);
 
-            _context.Huizen.Add(huisEF);
-            _context.SaveChanges();
-            return HuisMapper.MapToBLModel(huisEF);
+                if (_context.Parks.Find(huisEF.Park.Id) != null)
+                {
+                    huisEF.Park = _context.Parks.Find(huisEF.Park.Id);
+                }
+
+                _context.Huizen.Add(huisEF);
+                _context.SaveChanges();
+                return HuisMapper.MapToBLModel(huisEF);
+            }
+            catch
+            {
+                throw new RepositoryException("Update huis");
+            }
+            
         }
     }
 }
