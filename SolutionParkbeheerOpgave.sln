@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkBusinessLayer", "ParkBu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkDataLayer", "ParkDataLayer\ParkDataLayer.csproj", "{A8ACEC7C-9673-4DC3-8295-EB665550024C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppModelTest", "..\..\SolutionParkbeheerOpgave\ConsoleAppModelTest\ConsoleAppModelTest.csproj", "{38E18D46-F390-4186-A657-EBB7D69CAA60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppModelTest", "ConsoleAppModelTest\ConsoleAppModelTest.csproj", "{1CD7DBAF-61EA-42B9-8C1E-7AA803D8B7C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{A8ACEC7C-9673-4DC3-8295-EB665550024C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8ACEC7C-9673-4DC3-8295-EB665550024C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8ACEC7C-9673-4DC3-8295-EB665550024C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38E18D46-F390-4186-A657-EBB7D69CAA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38E18D46-F390-4186-A657-EBB7D69CAA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38E18D46-F390-4186-A657-EBB7D69CAA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38E18D46-F390-4186-A657-EBB7D69CAA60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD7DBAF-61EA-42B9-8C1E-7AA803D8B7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD7DBAF-61EA-42B9-8C1E-7AA803D8B7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD7DBAF-61EA-42B9-8C1E-7AA803D8B7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD7DBAF-61EA-42B9-8C1E-7AA803D8B7C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

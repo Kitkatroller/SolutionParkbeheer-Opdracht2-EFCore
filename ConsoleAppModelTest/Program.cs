@@ -13,10 +13,12 @@ namespace ConsoleAppModelTest
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string connectionString= @"Data Source=NB21-6CDPYD3\SQLEXPRESS;Initial Catalog=ParkbeheerS;Integrated Security=True";
-            //ParkbeheerContext ctx = new ParkbeheerContext(connectionString);
-            //ctx.Database.EnsureDeleted();
-            //ctx.Database.EnsureCreated();
+            //string connectionString= @"Data Source=NB21-6CDPYD3\SQLEXPRESS;Initial Catalog=ParkbeheerS;Integrated Security=True";
+            string connectionString = @"Data Source=RAZER-LAPTOP-EP\SQLEXPRESS;Initial Catalog=Parkbeheer;Integrated Security=True";
+
+            ParkbeheerContext ctx = new ParkbeheerContext(connectionString);
+            ctx.Database.EnsureDeleted();
+            ctx.Database.EnsureCreated();
 
             IHuizenRepository hrepo = new HuizenRepositoryEF(connectionString);
             BeheerHuizen bh = new BeheerHuizen(hrepo);
@@ -41,17 +43,17 @@ namespace ConsoleAppModelTest
             //bhuur.VoegNieuweHuurderToe("jos", new Contactgegevens("email1", "tel", "adres"));
             //bhuur.VoegNieuweHuurderToe("jef", new Contactgegevens("email2", "tel", "adres"));
 
-            IContractenRepository crepo = new ContractenRepositoryEF(connectionString);
-            BeheerContracten bc = new BeheerContracten(crepo);
+            //IContractenRepository crepo = new ContractenRepositoryEF(connectionString);
+            //BeheerContracten bc = new BeheerContracten(crepo);
             //Huurperiode hp = new Huurperiode(DateTime.Now, 10);
             //Huurder h = new Huurder(2, "Jos", new Contactgegevens("email1", "tel", "adres"));
             //Park p = new Park("p1", "Buitenhoeve", "Deinze");
             //Huis huis = new Huis(1, "Kerkstraat", 5, true, p);
             //bc.MaakContract("c2", hp, h, huis);
 
-            var y=bc.GeefContract("c2");
-            var t=bh.GeefHuis(1);
-            Console.WriteLine(t);
+            //var y=bc.GeefContract("c2");
+            //var t=bh.GeefHuis(1);
+            //Console.WriteLine(t);
 
         }
     }
