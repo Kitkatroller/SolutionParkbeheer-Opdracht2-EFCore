@@ -17,15 +17,10 @@ namespace ParkDataLayer
         public DbSet<HuurperiodeEF> Huurperiodes { get; set; }
         public DbSet<ContactgegevensEF> Contactgegevens { get; set; }
 
-        public ParkbeheerContext()
-        {
-
-        }
         public ParkbeheerContext(DbContextOptions<ParkbeheerContext> options)
            : base(options)
         {
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
@@ -55,11 +50,6 @@ namespace ParkDataLayer
                 .HasForeignKey<HuurperiodeEF>(hp => hp.Huurcontract_Id);
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=RAZER-LAPTOP-EP\SQLEXPRESS;Initial Catalog=Parkbeheer;Integrated Security=True;TrustServerCertificate=True");
         }
     }
 }
