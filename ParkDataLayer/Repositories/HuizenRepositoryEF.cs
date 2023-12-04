@@ -90,7 +90,7 @@ namespace ParkDataLayer.Repositories
             {
                 var huisEF = HuisMapper.MapToEfEntity(huis);
 
-                if (_context.Parks.Find(huisEF.Park.Id) != null)
+                if (_context.Parks.Find(huisEF.Park.Id) != null)//Im searching the same result twice, search once
                 {
                     huisEF.Park = _context.Parks.Find(huisEF.Park.Id);
                 }
@@ -102,8 +102,7 @@ namespace ParkDataLayer.Repositories
             catch
             {
                 throw new RepositoryException("Update huis");
-            }
-            
+            }            
         }
     }
 }

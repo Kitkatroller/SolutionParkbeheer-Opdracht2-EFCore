@@ -31,17 +31,17 @@ namespace ConsoleAppModelTest
             x.ZetNr(11);
             bh.UpdateHuis(x);
             bh.ArchiveerHuis(x);
-            //Huis h1 = new Huis();
+            //Huis h1 = new Huis(); //Lege contructor aanmaken in Huis?
             ParkEF pdb = new ParkEF("p1","naam","locatie");
             HuisEF hdb = new HuisEF("straat", 5, true);
             hdb.Park = pdb;
             ctx.Huizen.Add(hdb);
             ctx.SaveChanges();
-            ////huurder
-            //IHuurderRepository rhuur = new HuurderRepositoryEF(connectionString);
-            //BeheerHuurders bhuur = new BeheerHuurders(rhuur);
-            //bhuur.VoegNieuweHuurderToe("jos", new Contactgegevens("email1", "tel", "adres"));
-            //bhuur.VoegNieuweHuurderToe("jef", new Contactgegevens("email2", "tel", "adres"));
+            //huurder
+            IHuurderRepository rhuur = new HuurderRepositoryEF(connectionString);
+            BeheerHuurders bhuur = new BeheerHuurders(rhuur);
+            bhuur.VoegNieuweHuurderToe("jos", new Contactgegevens("email1", "tel", "adres"));
+            bhuur.VoegNieuweHuurderToe("jef", new Contactgegevens("email2", "tel", "adres"));
 
             //IContractenRepository crepo = new ContractenRepositoryEF(connectionString);
             //BeheerContracten bc = new BeheerContracten(crepo);
