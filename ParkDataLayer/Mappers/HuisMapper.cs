@@ -2,6 +2,7 @@
 using ParkDataLayer.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,14 +27,7 @@ namespace ParkDataLayer.Mappers
             if (huisEntry == null) return null;
 
 
-            return new HuisEF
-            {
-                Straat = huisEntry.Straat,
-                Nr = huisEntry.Nr,
-                Actief = huisEntry.Actief,
-                ParkId = huisEntry.Park.Id,
-                Park = ParkMapper.MapToEfEntity(huisEntry.Park)
-            };
+            return new HuisEF(huisEntry.Straat, huisEntry.Nr, huisEntry.Actief, ParkMapper.MapToEfEntity(huisEntry.Park), huisEntry.Park.Id);
         }
     }
 }

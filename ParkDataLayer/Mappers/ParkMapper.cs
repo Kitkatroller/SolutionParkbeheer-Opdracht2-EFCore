@@ -21,13 +21,7 @@ namespace ParkDataLayer.Mappers
         {
             if (parkEntry == null) return null;
 
-
-            return new ParkEF
-            {
-                Id = parkEntry.Id,
-                Naam = parkEntry.Naam,
-                Locatie = parkEntry.Locatie
-            };
+            return new ParkEF(parkEntry.Id, parkEntry.Naam, parkEntry.Locatie);
         }
     }
 }

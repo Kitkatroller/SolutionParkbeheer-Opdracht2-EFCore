@@ -4,6 +4,7 @@ using ParkBusinessLayer.Model;
 using ParkDataLayer.Mappers;
 using ParkDataLayer.Model;
 using System;
+using System.Linq;
 
 namespace ParkDataLayer.Repositories
 {
@@ -21,32 +22,48 @@ namespace ParkDataLayer.Repositories
 
         public Huis GeefHuis(int id)
         {
-            HuisEF huisEF = _context.Huizen
-                                .Include(u => u.Park)
-                                .FirstOrDefaultAsync(u => u.Id == id);
+            var huisEF = _context.Huizen
+                                 .Include(h => h.Park)
+                                 .FirstOrDefault(h => h.Id == id);
             return HuisMapper.MapToBLModel(huisEF);
-
-            //throw new NotImplementedException();
         }
 
         public bool HeeftHuis(string straat, int nummer, Park park)
         {
-            throw new NotImplementedException();
+            return _context.Huizen.Any(h => h.Straat == straat && h.Nr == nummer && h.ParkId == park.Id);
         }
 
         public bool HeeftHuis(int id)
         {
-            throw new NotImplementedException();
+            return _context.Huizen.Any(h => h.Id == id);
         }
 
         public void UpdateHuis(Huis huis)
         {
-            throw new NotImplementedException();
+            var huisEF = _context.Huizen.Find(huis.Id);
+            if (huisEF != null)
+            {
+                var mappedHuisEF = HuisMapper.MapToEfEntity(huis);
+                mappedHuisEF.Id = huisEF.Id;
+
+                _context.Entry(huisEF).CurrentValues.SetValues(mappedHuisEF);
+
+                _context.SaveChanges();
+            }
         }
 
-        public Huis VoegHuisToe(Huis h)
+        public Huis VoegHuisToe(Huis huis)
         {
-            throw new NotImplementedException();
+            var huisEF = HuisMapper.MapToEfEntity(huis);
+
+            if (_context.Parks.Find(huisEF.Park.Id) != null)
+            {
+                huisEF.Park = _context.Parks.Find(huisEF.Park.Id);
+            }
+
+            _context.Huizen.Add(huisEF);
+            _context.SaveChanges();
+            return HuisMapper.MapToBLModel(huisEF);
         }
     }
 }

@@ -26,17 +26,17 @@ namespace ConsoleAppModelTest
             bh.VoegNieuwHuisToe("parklaan", 1, p);
             bh.VoegNieuwHuisToe("parklaan", 2, p);
             bh.VoegNieuwHuisToe("parklaan", 3, p);
-            //var x = bh.GeefHuis(1);
-            //x.ZetStraat("Kerkstraat");
-            //x.ZetNr(11);
-            //bh.UpdateHuis(x);
-            //bh.ArchiveerHuis(x);
-            ////Huis h1 = new Huis();
-            ////ParkDB pdb = new ParkDB("p1","naam","locatie");
-            ////HuisDB hdb = new HuisDB("straat", 5, true);
-            ////hdb.Park = pdb;
-            ////ctx.Huizen.Add(hdb);
-            ////ctx.SaveChanges();
+            var x = bh.GeefHuis(1);
+            x.ZetStraat("Kerkstraat");
+            x.ZetNr(11);
+            bh.UpdateHuis(x);
+            bh.ArchiveerHuis(x);
+            //Huis h1 = new Huis();
+            ParkEF pdb = new ParkEF("p1","naam","locatie");
+            HuisEF hdb = new HuisEF("straat", 5, true);
+            hdb.Park = pdb;
+            ctx.Huizen.Add(hdb);
+            ctx.SaveChanges();
             ////huurder
             //IHuurderRepository rhuur = new HuurderRepositoryEF(connectionString);
             //BeheerHuurders bhuur = new BeheerHuurders(rhuur);

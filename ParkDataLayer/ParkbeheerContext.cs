@@ -17,6 +17,12 @@ namespace ParkDataLayer
         public DbSet<HuurperiodeEF> Huurperiodes { get; set; }
         public DbSet<ContactgegevensEF> Contactgegevens { get; set; }
 
+        public ParkbeheerContext(string connectionString) : base(new DbContextOptionsBuilder<ParkbeheerContext>()
+           .UseSqlServer(connectionString)
+           .Options)
+        {          
+        }
+
         public ParkbeheerContext(DbContextOptions<ParkbeheerContext> options)
            : base(options)
         {

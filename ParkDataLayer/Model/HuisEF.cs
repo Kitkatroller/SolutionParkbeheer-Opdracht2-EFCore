@@ -30,5 +30,29 @@ namespace ParkDataLayer.Model
         public virtual ParkEF Park { get; set; }
 
         public virtual ICollection<HuurcontractEF> Huurcontracten { get; set; }
+
+        public HuisEF(string straat, int nr, bool actief)
+        {
+            Straat = straat;
+            Nr = nr;
+            Actief = actief;
+        }
+
+        public HuisEF(string straat, int nr, ParkEF park)
+        {
+            Straat = straat;
+            Nr = nr;
+            Park = park;
+            Actief = true;
+        }
+
+        public HuisEF(string straat, int nr, bool actief, ParkEF park) : this(straat, nr, actief)
+        {
+            Park = park;
+        }
+        public HuisEF(string straat, int nr, bool actief, ParkEF park, string parkId) : this(straat, nr, actief, park)
+        {
+            ParkId = parkId;
+        }
     }
 }

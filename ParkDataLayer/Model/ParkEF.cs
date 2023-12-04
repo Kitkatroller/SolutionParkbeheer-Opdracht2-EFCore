@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkBusinessLayer.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,5 +22,12 @@ namespace ParkDataLayer.Model
         public string Locatie { get; set; }
 
         public virtual ICollection<HuisEF> Huizen { get; set; }
+
+        public ParkEF(string id, string naam, string locatie)
+        {
+            Id = id;
+            Naam = naam;
+            Locatie = locatie;
+        }
     }
 }
