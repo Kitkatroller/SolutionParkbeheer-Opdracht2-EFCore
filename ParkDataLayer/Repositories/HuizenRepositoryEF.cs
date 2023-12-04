@@ -58,8 +58,7 @@ namespace ParkDataLayer.Repositories
             catch
             {
                 throw new RepositoryException("Heeft huis");
-            }  
-            
+            }             
         }
 
         public void UpdateHuis(Huis huis)
